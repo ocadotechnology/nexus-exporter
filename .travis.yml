@@ -3,12 +3,13 @@ python:
 - '2.7'
 sudo: required
 services:
-  - docker
+- docker
 env:
   global:
   - REGISTRY_USER=ocadotechnologygitlab
   - VERSION=$TRAVIS_TAG
   - VCS_SOURCE="https://github.com/${TRAVIS_REPO_SLUG}"
+  - secure: qLmitXQ9ttHKKmfU7V+Uj1sDSnPU3A9r973dmsQsjDNFcDp0ZbA9nIBfcSraYxilme8VOgWXc/gAFQ+qn5CDcI5VK/i4+4yNIgFZWCYMAsgKtsn2cLHKWxT8iUCmwyW3UBTNRQwIiDWv5/RVGZL5FD5iN/+EqhIznDws359RfLd21+wV2L4GWgSp+9z8yd1QuRkG2+0hyRwYF/UIhv/9Z0LIDdFsKi5nabaHNdP7qhQkFObgiz/dBW0Gxr28I1eBem+mxoyYY1vLTtV1/+HGvuDc1mDylTPdcxQy4iskIg5+kfLHxGBL2dm5NWz0Y8QX36EuDUq8A0EWOybDK7cyvWZ9ELK3HoieCGke0Nv8PTCa6sy+vMcejSGfZrkUVd5vc8sR4b+6jnszUFVM83Grcf2HGg5p3nF9A+XcGYsFEUidcGhsDd7vboNSjO+grA1YwomeHhXUrqjxOLPYyU84K4ybOjDoPT0e3avYfEB4G6n7sULNXrqgnvu0Qg+xftz54LciC/0r3oi6JNf3mnDduqTvTcgFUyS1Ir/PrgKcavPgMVBmFn4bxPF/YSTLL0CID7oBf7tJxZRpTuRTRrSfKWSa0OIcjXyrLbn4TBEDYUfxkbL8d72KcQ8hWzF2cVypn3m5C9OcohMoKGhVd7ZqHBIXR4qXIvFECneTRBP/ygE=
 before_script:
 - docker pull "$TRAVIS_REPO_SLUG" || true
 script:
