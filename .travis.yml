@@ -44,6 +44,6 @@ before_deploy:
 - docker tag "${TRAVIS_REPO_SLUG}" "${TRAVIS_REPO_SLUG}:${TRAVIS_COMMIT}"
 deploy:
   provider: script
-  script: bash .travis/docker-push.sh
+  script: .travis/docker-push.sh
   on:
     branch: master
