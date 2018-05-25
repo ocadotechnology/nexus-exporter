@@ -7,12 +7,12 @@ import base64
 try:
     import urllib2
     from urlparse import urlparse
-    from urllib2 import URLError
+    from urllib2 import URLError, HTTPError
 except ImportError:
     # Python 3
     import urllib.request as urllib2
     from urllib.parse import urlparse
-    from urllib.error import URLError
+    from urllib.error import URLError, HTTPError
 from prometheus_client import start_http_server
 from prometheus_client.core import GaugeMetricFamily, REGISTRY
 import argparse
@@ -65,7 +65,13 @@ class NexusCollector(object):
 
     def collect(self):
         # make requests
-        self._request_data()
+        try:
+            self._request_data()
+        except HTTPError as err:
+            if err.code == 401:
+                fatal('Authentication failure, attempting to restart')
+        except URLError as err:
+            fatal(err)
 
         i = self._info['system-runtime']
         yield GaugeMetricFamily(
@@ -245,7 +251,12 @@ class NexusCollector(object):
         self._data = json.loads(urllib2.urlopen(data_request).read())
 
 
+def fatal(msg):
+    print(msg)
+    os._exit(1)  # hard exit without throwing exception
+
 if __name__ == "__main__":
+    print("starting...")
     args = parse()
     REGISTRY.register(NexusCollector(args.host, args.user, args.password))
     start_http_server(9184)
