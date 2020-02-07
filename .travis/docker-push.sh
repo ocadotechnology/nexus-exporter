@@ -8,6 +8,7 @@ performSnykAnalysisIfEnabled() {
           snyk monitor --org="${SNYK_ORG}" --docker "${TRAVIS_REPO_SLUG}:${TRAVIS_TAG}"
       fi
   fi
+}
 
 docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
 
