@@ -62,7 +62,7 @@ class NexusCollector(object):
     def __init__(self, target, user, password):
         self._target = target.rstrip("/")
         auth_string = '%s:%s' % (user, password)
-        self._auth = base64.standard_b64encode(auth_string.encode())
+        self._auth = base64.standard_b64encode(auth_string.encode()).decode('utf8')
         self._info = {}
         self._data = {}
 
@@ -105,7 +105,7 @@ class NexusCollector(object):
                                 value=i['threads'])
 
         i = self._info['system-filestores']
-        for fsname, details in i.iteritems():
+        for fsname, details in i.items():
             mount = self._mount_point(details['description'])
             fts = GaugeMetricFamily(
                 'nexus_filestore_total_space_bytes',
