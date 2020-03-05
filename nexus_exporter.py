@@ -13,7 +13,7 @@ from prometheus_client.core import GaugeMetricFamily, REGISTRY
 import argparse
 
 LOG = logging.getLogger('nexus-exporter')
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(format='%(asctime)s %(message)s',level=logging.INFO)
 
 
 def valid_url(string):
