@@ -8,7 +8,7 @@ The default user is `admin`, but to collect these metrics only the `nx-metrics-a
 
 Example with the default values:
 ```
-docker run [OTHER-DOCKER-RUN-OPTIONS] -p 9184:9184 -e NEXUS_HOST=http://localhost:8081 -e NEXUS_USERNAME=admin -e NEXUS_ADMIN_PASSWORD=admin123  nexus-exporter 
+docker run [OTHER-DOCKER-RUN-OPTIONS] -p 9184:9184 -e NEXUS_HOST=http://localhost:8081 -e NEXUS_USERNAME=admin -e NEXUS_ADMIN_PASSWORD=admin123  ocadotechnology/nexus-exporter 
 ```
 
 ## Notes
