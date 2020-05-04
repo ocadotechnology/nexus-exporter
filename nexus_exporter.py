@@ -53,6 +53,7 @@ def parse():
                         help="Nexus user name, defaults to admin",
                         default=os.environ.get("NEXUS_USERNAME", "admin"))
     parser.add_argument("--port",
+                        type=int,
                         help="Exporter port: default 9184",
                         default=9184)
     return parser.parse_args()
